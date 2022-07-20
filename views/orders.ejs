@@ -1,0 +1,16 @@
+<%- include('includes/header.ejs') %>
+    <%- include('includes/nav.ejs') %>
+    <%- include('includes/top.ejs') %>
+
+    <div class="container">
+        <% if (orders) { %>
+        <h3>Your successful orders:</h3>
+        <ul class="list-group list-group-flush">
+            <% for (const o of orders) { %>
+            <li class="list-group-item text-info">At <%= o.createdAt.toLocaleDateString() %> Total Price: $<%= o.totalPrice %></li>
+            <% } %>
+        </ul>
+          <% } %>
+    </div>
+
+<%- include('includes/footer.ejs') %>

@@ -1,0 +1,38 @@
+<%- include('includes/header.ejs') %>
+    <%- include('includes/nav.ejs') %>
+    <%- include('includes/top.ejs') %>
+
+    <div class="container">
+    <% if (!product) { %>
+        <p>Product not found.</p>    
+    <% } else { %>
+        <div class="d-flex flex-column mx-auto p-3 py-md-5">
+            <img src="/images/<%= product.image %>" class="bd-placeholder-img mx-auto d-block" alt="">
+            <h1><%= product.name %></h1>
+            <p class="fs-5 col-md-8"><%= product.description %></p>
+            
+            <h5 class="text-danger">Price: $<%= product.price %></h5>
+
+            <% if (isLoggedIn) { %>
+            <div class="mb-5">
+                <% if (!isInCart) { %>
+                <form action="/cart/add" method="post">
+                    <input type="hidden" name="productId" value="<%= product.id %>">
+                    <button class="btn btn-primary btn-lg px-4" type="submit">Add to Cart</button>
+                </form>
+                <% } else { %>
+                <h5 class="p-2 text-info">This product is already in your <a href="/cart">cart</a></h5>
+                <% } %>
+            </div>
+            <% } else { %>
+            <div class="p-2"><a href="/login">Login </a>to buy this product</div>
+            <% } %>
+
+            <strong>Category: <a href="/category/<%= product.categoryId %>"><%= product.category.title %></a></strong>
+
+            <hr class="col-3 col-md-2 mb-5">
+        </div>
+    <% } %>
+    </div>
+
+<%- include('includes/footer.ejs') %>

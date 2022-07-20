@@ -1,0 +1,37 @@
+<%- include('includes/header.ejs') %>
+    <%- include('includes/nav.ejs') %>
+    <%- include('includes/top.ejs') %>
+
+        <div class="album py-5 bg-light">
+            <div class="container">
+            <% if (!category || !products) { %>
+                <p>No products!</p>
+            <% } else { %>
+                <h3 class="mb-5"><%= category.title %> Products</h3>
+                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                <% for (const p of products) { %>
+                    <div class="col">
+                        <div class="card shadow-sm">
+                            <img src="/images/<%= p.image %>"
+                                class="img-thumbnail bd-placeholder-img card-img-top" alt="">
+
+                            <div class="card-body">
+                                <h3 class="card-title"><a href="/product/<%= p.id %>"><%= p.name %></a></h3>
+                                <p class="card-text"><%= p.description?.substring(0, 130) %> ...</p>
+                                <h6 class="text-danger">Price: $<%= p.price %></h6>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="btn-group">
+                                        <a href="/product/<%= p.id %>" class="btn btn-sm btn-outline-secondary">Details</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <% } %>
+                </div>
+                <%- include('includes/pagination.ejs', [{count: count, limit: limit, path: path}]) %>
+            <% } %>
+            </div>
+        </div>
+
+    <%- include('includes/footer.ejs') %>

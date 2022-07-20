@@ -1,0 +1,44 @@
+<%- include('includes/header.ejs') %>
+    <%- include('includes/nav.ejs') %>
+    <%- include('includes/top.ejs') %>
+
+    <%- include('includes/errorMessage.ejs', [{message: message}]) %>
+    
+    <div class="container">
+        <% if (cart && products) { %>
+        <h3>Your cart:</h3>
+        <ul class="list-group">
+            <% for (const p of products) { %>
+            <li class="list-group-item">
+                <div class="d-flex gap-3 py-3" aria-current="true">
+                    <img src="/images/<%= p.image %>" alt="twbs" width="32" height="32" class="rounded-circle flex-shrink-0">
+                    <div class="d-flex gap-2 w-100 justify-content-between">
+                      <div>
+                        <h6 class="mb-0"><a href="/product/<%= p.id %>"><%= p.name %></a></h6>
+                        <p class="mb-0 opacity-75">$<%= p.price %></p>
+                      </div>
+                      <small class="opacity-50 text-nowrap">
+                        <form action="/cart/remove" method="post">
+                            <input type="hidden" name="productId" value="<%= p.id %>">
+                            <button class="btn btn-sm btn-danger" type="submit">Remove</button>
+                        </form>
+                      </small>
+                    </div>
+                </div>
+            </li>
+            <% } %>
+            </ul>
+            <div class="my-3">
+                <h5 class="">Total: $<%= totalPrice %></h5>
+            </div>
+            <div class="my-3">
+                <form action="/order" method="post">
+                    <button class="btn btn-primary px-4" type="submit">Order</button>
+                </form>
+            </div>
+        <% } else { %>
+        <h3>Your cart is empty.</h3>
+        <% } %>
+    </div>
+
+<%- include('includes/footer.ejs') %>

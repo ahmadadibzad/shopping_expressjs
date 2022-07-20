@@ -1,0 +1,35 @@
+<%- include('includes/header.ejs') %>
+    <%- include('includes/nav.ejs') %>
+        <%- include('includes/top.ejs') %>
+
+        <% if (message) { %>
+        <div class="container text-center">
+            <div class="alert alert-<%= message.type %>">
+                <%= message.text %>
+            </div>
+        </div>
+        <% } %>
+
+        <section class="form-signin w-100 m-auto">
+            <form action="/signup" method="post" novalidate>
+                <h1 class="h3 mb-3 fw-normal text-warning text-center">Signup</h1>
+
+                <div class="form-floating">
+                    <input type="text" name="name" class="form-control" id="floatingInput">
+                    <label for="floatingInput">Your name</label>
+                </div>
+                <div class="form-floating">
+                    <input type="email" name="email" class="form-control" id="floatingInput">
+                    <label for="floatingInput">Email address</label>
+                </div>
+                <div class="form-floating">
+                    <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Password">
+                    <label for="floatingPassword">Password</label>
+                </div>
+                
+                <button class="w-100 btn btn-lg btn-primary" type="submit">Signup</button>
+            </form>
+        </section>
+
+
+<%- include('includes/footer.ejs') %>

@@ -1,0 +1,33 @@
+<%- include('includes/header.ejs') %>
+    <%- include('includes/nav.ejs') %>
+        <%- include('includes/top.ejs') %>
+
+        <% if (message) { %>
+        <div class="container text-center">
+            <div class="alert alert-<%= message.type %>">
+                <%= message.text %>
+            </div>
+        </div>
+        <% } %>
+
+        <section class="form-signin w-100 m-auto">
+            <form action="/login" method="post" novalidate>
+                <h1 class="h3 mb-3 fw-normal text-success text-center">Login</h1>
+
+                <div class="form-floating">
+                    <input type="email" name="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                    <label for="floatingInput">Email address</label>
+                </div>
+                <div class="form-floating">
+                    <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Password">
+                    <label for="floatingPassword">Password</label>
+                </div>
+                <div class="checkbox mb-3">
+                    <a href="/forget-password">Forgot password?</a>
+                  </div>
+                <button class="w-100 btn btn-lg btn-primary" type="submit">Login</button>
+            </form>
+        </section>
+
+
+<%- include('includes/footer.ejs') %>

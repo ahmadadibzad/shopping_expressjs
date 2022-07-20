@@ -1,0 +1,30 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark" aria-label="Eighth navbar example">
+    <div class="container">
+        <div class="collapse navbar-collapse" id="navbarsExample07">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link <%= path === '' ? 'active' : '' %>" aria-current="page" href="/">Home</a>
+                </li>
+                <% if (isLoggedIn) { %>
+                <li class="nav-item">
+                    <a class="nav-link <%= path === '/cart' ? 'active' : '' %>" aria-current="page" href="/cart">Cart</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link <%= path === '/orders' ? 'active' : '' %>" aria-current="page" href="/orders">Orders</a>
+                </li>
+                <% } %>
+            </ul>
+            <div class="text-end">
+                <% if (!isLoggedIn) { %>
+                <a class="btn btn-outline-light me-2" href="/login">Login</a>
+                <a class="btn btn-warning me-2" href="/signup">Signup</a>
+                <% } %>
+              </div>
+            <% if (isLoggedIn) { %>
+            <form action="/logout" method="post">
+                <button type="submit" class="btn btn-danger">Logout</button>
+            </form>
+            <% } %>
+        </div>
+    </div>
+</nav>

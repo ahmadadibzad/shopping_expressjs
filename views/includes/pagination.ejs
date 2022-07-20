@@ -1,0 +1,8 @@
+<nav aria-label="Page navigation" class="my-5">
+    <ul class="pagination pagination-lg justify-content-center">
+    <% pages = count / limit %>
+    <% for (let i = 1; i <= pages; i++) { %>
+      <li class="page-item <%= currentPage == i ? 'active' : ''%>"><a class="page-link" href="<%= path %>/?page=<%= i %>"><%= i %></a></li>
+    <% } %>
+    </ul>
+</nav>
